@@ -23,10 +23,10 @@ import javax.swing.JFileChooser;
  */
 public class PAATroco {
     
-    public static Map<Integer,Map<List, Integer>> mapa = new HashMap();
+    public static Map<Integer,Map<List, Long>> mapa = new HashMap();
     public static int nos = 0;
     
-    public static int principal(int troco, List moedas){
+    public static long principal(int troco, List moedas){
         
         if (mapa.containsKey(troco)){
             if(mapa.get(troco).containsKey(moedas)){
@@ -46,13 +46,13 @@ public class PAATroco {
         int moedamaior = (int) moedas.get(moedas.size()-1);
         List mantermoedas = moedas.subList(0, moedas.size()-1);
         nos++;
-        int total = principal(troco-moedamaior, moedas) + principal(troco, moedas.subList(0, moedas.size()-1));
+        long total = principal(troco-moedamaior, moedas) + principal(troco, moedas.subList(0, moedas.size()-1));
         if (mapa.containsKey(troco)){
-            Map<List, Integer> valores = mapa.get(troco);
+            Map<List, Long> valores = mapa.get(troco);
             valores.put(moedas, total);
         }
         else{
-            Map<List, Integer> valores = new HashMap();
+            Map<List, Long> valores = new HashMap();
             valores.put(moedas, total);
             mapa.put(troco, valores);
         }
